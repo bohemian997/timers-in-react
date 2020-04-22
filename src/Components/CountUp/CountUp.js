@@ -1,11 +1,12 @@
 import React from "react";
 import Box from "../Box/Box"
 
-export default class Currenttime extends React.Component{
+export default class CountUp extends React.Component{
+
     constructor(props){
         super(props)
         this.state = {
-            date: new Date()
+            count : 1,
         }
     }
     
@@ -13,8 +14,8 @@ export default class Currenttime extends React.Component{
         return (
             <div style={{paddingLeft:"32em"}}>
                 <Box>
-                    <h1>Current Time</h1>
-                    <h2>{this.state.date.toLocaleTimeString()}</h2>
+                    <h1>Count Up</h1>
+                    <p style={{fontSize : "40px"}}>{this.state.count}</p>
                 </Box>
             </div>
         )
@@ -22,7 +23,9 @@ export default class Currenttime extends React.Component{
 
     componentDidMount(){
         this.myInterval = setInterval(()=>{
-            this.setState({date : new Date()});
+            this.setState(prev => ({
+                count : prev.count + 1
+            }))
         }, 1000)
     }
 
